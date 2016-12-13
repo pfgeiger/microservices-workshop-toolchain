@@ -1,7 +1,7 @@
 module.exports = function(app, request) {
 
 	var resJson = [];
-	var microserviceBaseUrl = "https://netflix-zuul-cloudnative-dev.mybluemix.net/inventory-microservice/micro";
+	var microserviceBaseUrl = "https://inventoryservice-pgeiger.mybluemix.net/micro";
 
 //	validation check
 	app.get('/api/items/validate',function(req, res){
@@ -9,7 +9,7 @@ module.exports = function(app, request) {
 	});
 
 
-//	get list of items in inventory
+//	get list of itemfiles in inventory
 	app.get('/api/items',function(req, res){
 
 		var endPoint = microserviceBaseUrl + '/inventory';
@@ -43,8 +43,13 @@ module.exports = function(app, request) {
     		'Authorization': req.get('Authorization')
   		}
 		}, function (error, response, body) {
-
+			if (0 === body.length) {
+				body = "{}";
+			}
+  var bodyJson = JSON.parse(body);
+		
 			var bodyJson = JSON.parse(body);
+			
 
 			if (!error && response.statusCode == 200) {
 				return res.json(bodyJson);

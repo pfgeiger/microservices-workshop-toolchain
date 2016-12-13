@@ -3,8 +3,8 @@ applications:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: inventory-bff-app
-  host: inventory-bff-app
+  name: inventory-bff-app-pgeiger
+  host: inventory-bff-app-pgeiger
   disk_quota: 1024M
   services:
-  - cloudnative-autoscale
+  - cloudnative-autoscale-pgeiger
